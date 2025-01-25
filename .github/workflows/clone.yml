@@ -1,0 +1,28 @@
+name: clone仓库
+
+on:
+  push:
+    branches:
+      - master  # 或者你想要触发工作流的分支名
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v2
+
+      - name: 克隆miqt仓库
+        run: git clone --recursive https://github.com/ddkwork/miqt
+      #        run: git clone --recursive https://github.com/HyperDbg/HyperDbg.git
+
+      - name: 打包miqt项目
+        run: zip -r miqt.zip miqt
+
+      - name: 上传打包文件
+        uses: actions/upload-artifact@v2
+        with:
+          name: miqt-zip
+          path: miqt.zip
