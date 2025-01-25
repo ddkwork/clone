@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: 检出代码
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 克隆miqt仓库
         run: git clone --recursive https://github.com/ddkwork/miqt
@@ -22,7 +22,7 @@ jobs:
         run: zip -r miqt.zip miqt
 
       - name: 上传打包文件
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: miqt-zip
           path: miqt.zip
