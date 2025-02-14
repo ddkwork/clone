@@ -9,8 +9,9 @@ func main() {
 	m := safemap.NewOrdered[string, string](func(yield func(string, string) bool) {
 		yield("miqt", "https://github.com/ddkwork/miqt.git")
 		yield("HyperDbg", "https://github.com/HyperDbg/HyperDbg.git")
+		yield("sointu", "https://github.com/vsariola/sointu.git")
 	})
-	name := "miqt"
+	name := "sointu"
 	url := m.GetMust(name)
 	g := stream.NewGeneratedFile()
 	g.P(`
