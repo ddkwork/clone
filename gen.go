@@ -11,7 +11,7 @@ func main() {
 		yield("HyperDbg", "https://github.com/HyperDbg/HyperDbg.git")
 		yield("sointu", "https://github.com/vsariola/sointu.git")
 	})
-	name := "sointu"
+	name := "miqt"
 	url := m.GetMust(name)
 	g := stream.NewGeneratedFile()
 	g.P(`
