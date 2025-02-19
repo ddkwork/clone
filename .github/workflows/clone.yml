@@ -13,13 +13,13 @@ jobs:
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
-      - name: 克隆miqt仓库
-        run: git clone --recursive https://github.com/ddkwork/miqt.git
-      - name: 打包miqt项目
-        run: zip -r miqt.zip miqt
+      - name: 克隆unison仓库
+        run: git clone --recursive https://github.com/richardwilkes/unison.git
+      - name: 打包unison项目
+        run: zip -r unison.zip unison
 
       - name: 上传打包文件
         uses: actions/upload-artifact@v4
         with:
-          name: miqt-zip
-          path: miqt.zip
+          name: unison-zip
+          path: unison.zip

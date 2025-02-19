@@ -10,8 +10,9 @@ func main() {
 		yield("miqt", "https://github.com/ddkwork/miqt.git")
 		yield("HyperDbg", "https://github.com/HyperDbg/HyperDbg.git")
 		yield("sointu", "https://github.com/vsariola/sointu.git")
+		yield("unison", "https://github.com/richardwilkes/unison.git")
 	})
-	name := "miqt"
+	name := "unison"
 	url := m.GetMust(name)
 	g := stream.NewGeneratedFile()
 	g.P(`
