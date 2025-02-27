@@ -2,7 +2,7 @@ module clone
 
 go 1.24.0
 
-require github.com/ddkwork/golibrary v0.0.91-0.20250225120832-ed50dea89457
+require github.com/ddkwork/golibrary v0.0.91-0.20250227042052-d984f0dc2c03
 
 require (
 	gioui.org v0.8.1-0.20250223181602-72a72a2bc21a // indirect
