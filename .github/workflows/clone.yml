@@ -51,3 +51,10 @@ jobs:
         with:
           name: unison-tar-gz
           path: unison.tar.gz
+
+# 新增步骤：上传依赖文件
+      - name: 上传依赖文件
+        uses: actions/upload-artifact@v4
+        with:
+          name: dep-txt
+          path: dep.txt

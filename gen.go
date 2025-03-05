@@ -72,5 +72,15 @@ jobs:
 	g.P("        with:")
 	g.P("          name: ", name, "-tar-gz")
 	g.P("          path: ", name, ".tar.gz")
+	g.P()
+
+	g.P(`
+      # 新增步骤：上传依赖文件
+      - name: 上传依赖文件
+        uses: actions/upload-artifact@v4
+        with:
+          name: dep-txt
+          path: dep.txt
+`)
 	stream.WriteTruncate(".github/workflows/clone.yml", g.String())
 }
