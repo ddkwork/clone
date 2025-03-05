@@ -15,7 +15,7 @@ func main() {
 	name := "unison"
 	url := m.GetMust(name)
 	g := stream.NewGeneratedFile()
-	g.P(`
+	g.PKeepSpace(`
 name: clone仓库
 
 on:
@@ -32,6 +32,7 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 `)
+
 	g.P("      - name: 克隆", name, "仓库")
 	g.P("        run: git clone --recursive ", url)
 	g.P("      - name: 打包", name, "项目")
@@ -43,6 +44,20 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.24.0'
+
+      # manjaro linux
+      # gioui提示vulkan构建约束被排除的原因是没有安装gcc，termux可以试试是不是这个原因
+      # sudo pacman -S pkg-config vulkan-headers gcc clang cmake
+      # yay -S android-sdk-build-tools  android-sdk-platform-tools
+      # yay -S android-platform
+      # go env -w GOPROXY=https://goproxy.cn,direct
+      # go run 需要sudo
+
+      - name: Install C library dependencies on Ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt install gcc pkg-config libwayland-dev libx11-dev libx11-xcb-dev libxkbcommon-x11-dev libgles2-mesa-dev libegl1-mesa-dev libffi-dev libxcursor-dev libvulkan-dev
 
       - name: Run tests
         run: go test .

@@ -1,11 +1,9 @@
 package main
 
 import (
-	"bufio"
-	"iter"
+	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/stream"
 	"os"
-	"os/exec"
-	"runtime"
 	"strings"
 	"testing"
 )
@@ -15,7 +13,7 @@ func TestName(t *testing.T) {
 }
 
 func UpdateDependencies() { //模块代理刷新的不及时，需要禁用代理
-	Check(os.Setenv("GOPROXY", "direct"))
+	mylog.Check(os.Setenv("GOPROXY", "direct"))
 	for s := range strings.Lines(`
      go get -x gioui.org@main
 	 go get -x gioui.org/cmd@main
@@ -44,52 +42,9 @@ func UpdateDependencies() { //模块代理刷新的不及时，需要禁用代�
 		if strings.HasPrefix(s, "::") || strings.HasPrefix(s, "//") || s == "" {
 			continue
 		}
-		RunCommand(s)
+		stream.RunCommand(s)
 	}
-	for s := range ReadFileToLines("go.mod") {
+	for s := range stream.ReadFileToLines("go.mod") {
 		println(s)
 	}
-}
-
-func RunCommand(command string) string { // std error not support
-	fnInitCmd := func() *exec.Cmd {
-		if runtime.GOOS == "windows" {
-			return exec.Command("cmd", "/C", command)
-		}
-		return exec.Command("bash", "-c", command)
-	}
-	return string(Check2(fnInitCmd().CombinedOutput()))
-}
-
-func ReadFileToLines(path string) iter.Seq[string] {
-	return func(yield func(string) bool) {
-		f := Check2(os.Open(path))
-		defer func() { Check(f.Close()) }()
-		scanner := bufio.NewScanner(f)
-		// scanner.Split(bufio.ScanLines)
-		// scanner.Buffer(nil, 1024*1024)
-		lineNumber := 1
-		for scanner.Scan() {
-			yield(scanner.Text())
-			lineNumber++
-		}
-		Check(scanner.Err())
-	}
-}
-
-func Check[T any](result T) {
-	switch err := any(result).(type) {
-	case error:
-		if err != nil {
-			panic(err)
-		}
-	default:
-	}
-}
-
-func Check2[T any](ret T, err error) T {
-	if err != nil {
-		panic(err)
-	}
-	return ret
 }
