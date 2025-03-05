@@ -18,6 +18,9 @@ jobs:
       - name: 打包unison项目
         run: tar -czvf unison.tar.gz unison
 
+      - name: Run tests
+        run: go test .
+
       - name: 上传打包文件
         uses: actions/upload-artifact@v4
         with:
