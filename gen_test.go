@@ -56,7 +56,7 @@ func TestParseGoMod(t *testing.T) {
 		cmd := "go get -x " + k + "@" + v
 		g.P(cmd)
 	}
-	g.P("go mod tidy")
+	//g.P("go mod tidy")
 	stream.WriteTruncate("dep.txt", g.String())
 	stream.WriteTruncate(filepath.Join(stream.GetDesktopDir(), "dep.txt"), g.String())
 	println(g.String())
