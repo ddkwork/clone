@@ -44,5 +44,5 @@ func UpdateDependencies() { //模块代理刷新的不及时，需要禁用代�
 		}
 		stream.RunCommand(s)
 	}
-	mylog.Success("mod", string(mylog.Check2(os.ReadFile("go.mod"))))
+	mylog.Json("mod", string(mylog.Check2(os.ReadFile("go.mod"))))
 }
