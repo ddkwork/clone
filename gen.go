@@ -11,6 +11,7 @@ func main() {
 		yield("HyperDbg", "https://github.com/HyperDbg/HyperDbg.git")
 		yield("sointu", "https://github.com/vsariola/sointu.git")
 		yield("unison", "https://github.com/richardwilkes/unison.git")
+		yield("unison", "https://github.com/go-gost/gost-plus.git")
 	})
 	name := "unison"
 	url := m.GetMust(name)
