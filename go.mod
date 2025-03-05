@@ -9,7 +9,6 @@ require (
 	gioui.org/shader v1.0.8 // indirect
 	github.com/go-text/typesetting v0.3.0 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
-	golang.org/x/exp v0.0.0-20250228200357-dead58393ab7 // indirect
 	golang.org/x/exp/shiny v0.0.0-20250228200357-dead58393ab7 // indirect
 	golang.org/x/image v0.24.0 // indirect
 	golang.org/x/sync v0.11.0 // indirect

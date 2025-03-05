@@ -42,7 +42,7 @@ func UpdateDependencies() { //模块代理刷新的不及时，需要禁用代�
 		if strings.HasPrefix(s, "::") || strings.HasPrefix(s, "//") || s == "" {
 			continue
 		}
-		stream.RunCommand(s)
+		println(stream.RunCommand(s).Output.String())
 	}
 	mylog.Success("mod", mylog.Check2(os.ReadFile("go.mod")))
 }
