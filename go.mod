@@ -2,7 +2,7 @@ module clone
 
 go 1.24.0
 
-require github.com/ddkwork/golibrary v0.0.91-0.20250306045432-aa8da34ea72d
+require github.com/ddkwork/golibrary v0.0.91-0.20250306060015-0aafd20a2452
 
 require (
 	github.com/google/go-cmp v0.7.0 // indirect
