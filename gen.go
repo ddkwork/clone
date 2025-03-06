@@ -81,6 +81,12 @@ jobs:
         with:
           name: dep-txt
           path: dep.txt
+
+      - name: 上传mod文件
+        uses: actions/upload-artifact@v4
+        with:
+          name: mod
+          path: go.mod
 `)
 	stream.WriteTruncate(".github/workflows/clone.yml", g.String())
 }

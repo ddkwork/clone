@@ -22,7 +22,7 @@ jobs:
       - name: 打包unison项目
         run: tar -czvf unison.tar.gz unison
 
-
+      
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
@@ -52,9 +52,15 @@ jobs:
           name: unison-tar-gz
           path: unison.tar.gz
 
-      # 新增步骤：上传依赖文件
+# 新增步骤：上传依赖文件
       - name: 上传依赖文件
         uses: actions/upload-artifact@v4
         with:
           name: dep-txt
           path: dep.txt
+
+      - name: 上传mod文件
+        uses: actions/upload-artifact@v4
+        with:
+          name: mod
+          path: go.mod
