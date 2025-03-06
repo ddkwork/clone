@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/ddkwork/golibrary"
 	"github.com/ddkwork/golibrary/mylog"
 	"github.com/ddkwork/golibrary/stream"
 	"os"
@@ -8,6 +9,11 @@ import (
 	"strings"
 	"testing"
 )
+
+func TestUpLib(t *testing.T) {
+	t.Skip()
+	golibrary.UpdateSelf()
+}
 
 func TestName(t *testing.T) {
 	UpdateDependencies()
