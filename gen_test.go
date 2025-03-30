@@ -31,6 +31,7 @@ func UpdateDependencies() { //模块代理刷新的不及时，需要禁用代�
 	 go get -x github.com/ddkwork/golibrary@master
 	 go get -x github.com/ddkwork/ux@master
 	 go get -x github.com/google/go-cmp@master
+	 go get -x le golang.org/x/arch@master
 	 go get -x github.com/ddkwork/app@master
 	 go get -x github.com/ddkwork/toolbox@master
 	 go get -x github.com/ddkwork/unison@master
