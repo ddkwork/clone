@@ -7,12 +7,12 @@ import (
 
 func main() {
 	m := safemap.NewOrdered[string, string](func(yield func(string, string) bool) {
-		yield("miqt", "https://github.com/ddkwork/miqt.git")
+		//yield("miqt", "https://github.com/ddkwork/miqt.git")
 		yield("HyperDbg", "https://github.com/HyperDbg/HyperDbg.git")
 		yield("sointu", "https://github.com/vsariola/sointu.git")
 		yield("unison", "https://github.com/richardwilkes/unison.git")
 	})
-	name := "unison"
+	name := "HyperDbg"
 	url := m.GetMust(name)
 	g := stream.NewGeneratedFile()
 	g.PKeepSpace(`
@@ -46,7 +46,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.24.0'
+          go-version: '1.24.1'
 
       # manjaro linux
       # gioui提示vulkan构建约束被排除的原因是没有安装gcc，termux可以试试是不是这个原因
