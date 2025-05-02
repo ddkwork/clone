@@ -1,13 +1,14 @@
 package main
 
 import (
-	"github.com/ddkwork/golibrary"
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/ddkwork/golibrary"
+	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/stream"
 )
 
 func TestUpLib(t *testing.T) {
@@ -20,7 +21,7 @@ func TestName(t *testing.T) {
 	TestParseGoMod(t)
 }
 
-func UpdateDependencies() { //模块代理刷新的不及时，需要禁用代理
+func UpdateDependencies() { // 模块代理刷新的不及时，需要禁用代理
 	mylog.Check(os.Setenv("GOPROXY", "direct"))
 	for s := range strings.Lines(`
      go get -x gioui.org@main
@@ -65,7 +66,7 @@ func TestParseGoMod(t *testing.T) {
 		cmd := "go get -x " + k + "@" + v
 		g.P(cmd)
 	}
-	//g.P("go mod tidy")
+	// g.P("go mod tidy")
 	stream.WriteTruncate("dep.txt", g.String())
 	stream.WriteTruncate(filepath.Join(stream.GetDesktopDir(), "dep.txt"), g.String())
 	println(g.String())
