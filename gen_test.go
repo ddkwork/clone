@@ -62,7 +62,7 @@ func UpdateDependencies() { // 模块代理刷新的不及时，需要禁用代�
 
 func TestParseGoMod(t *testing.T) {
 	g := stream.NewGeneratedFile()
-	m := stream.ParseGoMod("go.mod", nil) // todo read file?
+	m := stream.ParseGoMod("go.mod", mylog.Check2(os.ReadFile("go.mod")))
 	for k, v := range m.Range() {
 		cmd := "go get -x " + k + "@" + v
 		g.P(cmd)

@@ -7,10 +7,8 @@ import (
 
 func main() {
 	m := safemap.NewOrdered[string, string](func(yield func(string, string) bool) {
-		//yield("miqt", "https://github.com/ddkwork/miqt.git")
 		yield("HyperDbg", "https://github.com/HyperDbg/HyperDbg.git")
 		yield("sointu", "https://github.com/vsariola/sointu.git")
-		yield("unison", "https://github.com/richardwilkes/unison.git")
 	})
 	name := "HyperDbg"
 	url := m.GetMust(name)
