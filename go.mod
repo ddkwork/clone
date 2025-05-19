@@ -1,6 +1,6 @@
 module clone
 
-go 1.24.1
+go 1.24.3
 
 require github.com/ddkwork/golibrary v0.1.2-0.20250507062101-31099ee7792e
 
