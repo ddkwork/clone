@@ -16,7 +16,7 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 	 go get -x gioui.org/cmd@main
 	 go get -x gioui.org/example@main
 	 go get -x gioui.org/x@main
-	 go get -x github.com/oligo/gvcode@v0.2.1-0.20250424030509-8138ffc92f73
+	 //go get -x github.com/oligo/gvcode@v0.2.1-0.20250424030509-8138ffc92f73
 	 go get -x github.com/ddkwork/golibrary@master
 	 go get -x github.com/ddkwork/ux@master
 	 go get -x github.com/ddkwork/ddk@master
