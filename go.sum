@@ -1,10 +1,8 @@
-github.com/ddkwork/golibrary v0.1.2-0.20250507062101-31099ee7792e h1:NNeo8FB0ZBoyQfTYGsSzXQDc5VstB6B0aWjxrUfLXnU=
-github.com/ddkwork/golibrary v0.1.2-0.20250507062101-31099ee7792e/go.mod h1:JkTN5ZkZYptsfII6orURXexoJILmpfgXPT9dEWEEQjQ=
+github.com/ddkwork/golibrary v0.1.2-0.20250601104454-1341acc6b0bf h1:nE7HP8CXNhlmZ0mp8gqhfE3KPxbgBdp1Bvhq8TmQEWY=
+github.com/ddkwork/golibrary v0.1.2-0.20250601104454-1341acc6b0bf/go.mod h1:9h4fIDkCLCUmD1nyvei0qQD24SkdTeXg5NsRNVOibT4=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
 golang.org/x/mod v0.24.0 h1:ZfthKaKaT4NrhGVZHO1/WDTwGES4De8KtWO0SIbNJMU=
 golang.org/x/mod v0.24.0/go.mod h1:IXM97Txy2VM4PJ3gI61r1YEk/gAj6zAHN3AdZt6S9Ww=
-golang.org/x/sync v0.14.0 h1:woo0S4Yywslg6hp4eUFjTVOyKt0RookbpAHG4c1HmhQ=
-golang.org/x/sync v0.14.0/go.mod h1:1dzgHSNfp02xaA81J2MS99Qcpr2w7fw1gpm99rleRqA=
 golang.org/x/text v0.25.0 h1:qVyWApTSYLk/drJRO5mDlNYskwQznZmkpV2c8q9zls4=
 golang.org/x/text v0.25.0/go.mod h1:WEdwpYrmk1qmdHvhkSTNPm3app7v4rsT8F2UD6+VHIA=
