@@ -45,7 +45,8 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 		if strings.HasPrefix(s, "::") || strings.HasPrefix(s, "//") || s == "" {
 			continue
 		}
-		stream.RunCommand(s)
+		r := stream.RunCommand(s)
+		mylog.Trace("result", r.Stderr.String())
 	}
 	mylog.Json("mod", string(mylog.Check2(os.ReadFile("go.mod"))))
 }
