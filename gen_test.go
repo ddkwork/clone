@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/ddkwork/golibrary/std/waitgroup"
 	"os"
 	"strings"
 	"testing"
@@ -35,14 +36,15 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 		"github.com/ebitengine/purego": "main",
 		"github.com/saferwall/pe":      "main",
 	}
-	var all []string
+	w := waitgroup.New()
 	for k, v := range reps {
 		if strings.Contains(k, "gvcode") {
 			v = "v0.2.1-0.20250424030509-8138ffc92f73"
 		}
-		all = append(all, k+"@"+v)
+		w.Go(func() {
+			stream.RunCommand("go", "get", k+"@"+v)
+		})
 	}
-	stream.RunCommand("go", "get", strings.Join(all, " "))
 	g := stream.NewGeneratedFile()
 	for s := range stream.ReadFileToLines("go.mod") {
 		if strings.Contains(s, "gvcode") {
