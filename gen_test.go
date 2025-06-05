@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream"
 )
 
 func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用代理
