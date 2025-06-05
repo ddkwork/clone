@@ -61,7 +61,7 @@ jobs:
       #    sudo apt install gcc pkg-config libwayland-dev libx11-dev libx11-xcb-dev libxkbcommon-x11-dev libgles2-mesa-dev libegl1-mesa-dev libffi-dev libxcursor-dev libvulkan-dev
 
       - name: Run tests
-        run: go test -v . 2>&1 #| tee test.log
+        run: go test -timeout 4m . 
 
 `)
 
