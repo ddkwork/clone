@@ -1,11 +1,3 @@
-github.com/ddkwork/golibrary v0.1.2-0.20250604171953-dfb5c4a1e215 h1:HIE+jYgqQfzGc3O2ajNAHxgwA0eL3p9ykVefl1KHBeo=
-github.com/ddkwork/golibrary v0.1.2-0.20250604171953-dfb5c4a1e215/go.mod h1:9h4fIDkCLCUmD1nyvei0qQD24SkdTeXg5NsRNVOibT4=
-github.com/ddkwork/golibrary v0.1.2-0.20250605052943-5a7d67e29937 h1:q3CWpQ4FRngPOYVPRH1X54CZRGdtOgFdhfGjO9HZDXc=
-github.com/ddkwork/golibrary v0.1.2-0.20250605052943-5a7d67e29937/go.mod h1:9h4fIDkCLCUmD1nyvei0qQD24SkdTeXg5NsRNVOibT4=
-github.com/ddkwork/golibrary v0.1.2-0.20250605053606-2762b2d32181 h1:BF3gFLOCL1Vz8JFJ9MO/iIOrizJEDWvMSRH1+5NfaIw=
-github.com/ddkwork/golibrary v0.1.2-0.20250605053606-2762b2d32181/go.mod h1:9h4fIDkCLCUmD1nyvei0qQD24SkdTeXg5NsRNVOibT4=
-github.com/ddkwork/golibrary v0.1.2-0.20250605055327-af44edc99534 h1:3F+UTzbqVbnzYd0rU224C6hZo8WLPX9BRxylERyGq9g=
-github.com/ddkwork/golibrary v0.1.2-0.20250605055327-af44edc99534/go.mod h1:9h4fIDkCLCUmD1nyvei0qQD24SkdTeXg5NsRNVOibT4=
 github.com/ddkwork/golibrary v0.1.2-0.20250605061852-3b260dccff8b h1:5Y/in8QA7sBBDhKwukXYZFmMBrrLtxrCa71jj7cZsEk=
 github.com/ddkwork/golibrary v0.1.2-0.20250605061852-3b260dccff8b/go.mod h1:9h4fIDkCLCUmD1nyvei0qQD24SkdTeXg5NsRNVOibT4=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
