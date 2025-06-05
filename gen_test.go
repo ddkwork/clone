@@ -31,15 +31,6 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 	 go get -x github.com/ddkwork/unison@master
 	 go get -x github.com/ebitengine/purego@main
 	 go get -x github.com/saferwall/pe@main
-	 ::go get -u -x all
-	 //go mod tidy
-
-	//go install mvdan.cc/gofumpt@latest
-	//gofumpt -l -w .
-	//go install honnef.co/go/tools/cmd/staticcheck@latest
-	//staticcheck ./...
-	//go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
-
 `) {
 		s = strings.TrimSpace(s)
 		if strings.HasPrefix(s, "::") || strings.HasPrefix(s, "//") || s == "" {

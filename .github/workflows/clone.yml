@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        os: [ macos-latest ]
 
     steps:
       - name: 检出代码
@@ -22,11 +22,11 @@ jobs:
       - name: 打包HyperDbg项目
         run: tar -czvf HyperDbg.tar.gz HyperDbg
 
-
+      
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.24.2'
+          go-version: '1.24.3'
 
       # manjaro linux
       # gioui提示vulkan构建约束被排除的原因是没有安装gcc，termux可以试试是不是这个原因
@@ -52,6 +52,12 @@ jobs:
           name: HyperDbg-tar-gz
           path: HyperDbg.tar.gz
 
+# 新增步骤：上传依赖文件
+      - name: 上传依赖文件
+        uses: actions/upload-artifact@v4
+        with:
+          name: dep-txt
+          path: dep.txt
 
       - name: 上传mod文件
         uses: actions/upload-artifact@v4

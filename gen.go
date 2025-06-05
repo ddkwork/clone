@@ -27,7 +27,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        os: [ macos-latest ]
 
     steps:
       - name: 检出代码
@@ -44,7 +44,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.24.2'
+          go-version: '1.24.3'
 
       # manjaro linux
       # gioui提示vulkan构建约束被排除的原因是没有安装gcc，termux可以试试是不是这个原因
