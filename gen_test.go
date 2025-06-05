@@ -47,4 +47,5 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 	}
 	stream.WriteTruncate("go.mod", g.Bytes())
 	mylog.Json("mod", string(mylog.Check2(os.ReadFile("go.mod"))))
+	mylog.Json("log", string(mylog.Check2(os.ReadFile("log.log"))))
 }
