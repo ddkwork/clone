@@ -48,7 +48,7 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 		stream.RunCommand(s)
 	}
 
-	s := `go get -x github.com/oligo/gvcode@v0.2.1-0.20250424030509-8138ffc92f73`
+	s := `require github.com/oligo/gvcode@v0.2.1-0.20250424030509-8138ffc92f73`
 	b := stream.NewBuffer("go.mod")
 	b.NewLine().WriteString(s)
 	b.ReWriteSelf()
