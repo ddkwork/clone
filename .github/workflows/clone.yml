@@ -17,15 +17,12 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
-      - name: Enable step debug logging
-        run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
-
       - name: 克隆HyperDbg仓库
         run: git clone --recursive https://github.com/HyperDbg/HyperDbg.git
       - name: 打包HyperDbg项目
         run: tar -czvf HyperDbg.tar.gz HyperDbg
 
-
+      
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
@@ -46,7 +43,7 @@ jobs:
       #    sudo apt install gcc pkg-config libwayland-dev libx11-dev libx11-xcb-dev libxkbcommon-x11-dev libgles2-mesa-dev libegl1-mesa-dev libffi-dev libxcursor-dev libvulkan-dev
 
       - name: Run tests
-        run: go test -v .
+        run: go test -v . 2>&1 #| tee test.log
 
 
       - name: 上传打包文件
@@ -55,7 +52,7 @@ jobs:
           name: HyperDbg-tar-gz
           path: HyperDbg.tar.gz
 
-      # 新增步骤：上传依赖文件
+# 新增步骤：上传依赖文件
       - name: 上传依赖文件
         uses: actions/upload-artifact@v4
         with:
