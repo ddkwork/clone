@@ -9,9 +9,10 @@ import (
 	"github.com/ddkwork/golibrary/std/stream"
 )
 
-func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用代理
+func TestUpdateAllLocalRep(t *testing.T) {
 	stream.UpdateAllLocalRep()
-
+}
+func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用代理
 	mylog.Check(os.Setenv("GOPROXY", "direct"))
 	for s := range strings.Lines(`
      go get -x gioui.org@main
