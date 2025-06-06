@@ -36,7 +36,7 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 		"github.com/ebitengine/purego": "main",
 		"github.com/saferwall/pe":      "main",
 	}
-	w := waitgroup.New()
+	w := waitgroup.NewWithMutex()
 	for k, v := range reps {
 		if strings.Contains(k, "gvcode") {
 			v = "v0.2.1-0.20250424030509-8138ffc92f73"
@@ -45,6 +45,7 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 			stream.RunCommand("go", "get", k+"@"+v)
 		})
 	}
+	w.Wait()
 	g := stream.NewGeneratedFile()
 	for s := range stream.ReadFileToLines("go.mod") {
 		if strings.Contains(s, "gvcode") {
