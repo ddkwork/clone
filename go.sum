@@ -1,5 +1,5 @@
-github.com/ddkwork/golibrary v0.1.4-0.20250616120223-0a6e456032ab h1:V9s9rUsjJLN12CXvfjjjgp2CFXdRdDGrGRPqNOBMKiQ=
-github.com/ddkwork/golibrary v0.1.4-0.20250616120223-0a6e456032ab/go.mod h1:Mz9h57QxktABXdNL99/xoYmUnXoR10BpR7xYnePIibA=
+github.com/ddkwork/golibrary v0.1.5-0.20250616132247-c9b5bccc8ccf h1:OyBz1iQUm0iGkHjWjr9f7K7XyxyHs1XdQWmWeUAtPNE=
+github.com/ddkwork/golibrary v0.1.5-0.20250616132247-c9b5bccc8ccf/go.mod h1:Mz9h57QxktABXdNL99/xoYmUnXoR10BpR7xYnePIibA=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
 golang.org/x/mod v0.25.0 h1:n7a+ZbQKQA/Ysbyb0/6IbB1H/X41mKgbhfv7AfG/44w=
