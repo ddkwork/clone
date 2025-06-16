@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/ddkwork/golibrary/std/waitgroup"
 	"os"
 	"strings"
+	"sync"
 	"testing"
 
 	"github.com/ddkwork/golibrary/std/mylog"
@@ -36,7 +36,7 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 		"github.com/ebitengine/purego": "main",
 		"github.com/saferwall/pe":      "main",
 	}
-	w := waitgroup.NewWithMutex()
+	w := sync.WaitGroup{}
 	for k, v := range reps {
 		if strings.Contains(k, "gvcode") {
 			v = "v0.2.1-0.20250424030509-8138ffc92f73"
