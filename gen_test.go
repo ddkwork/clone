@@ -42,7 +42,7 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 			v = "v0.2.1-0.20250424030509-8138ffc92f73"
 		}
 		w.Go(func() {
-			stream.RunCommand("go", "get", k+"@"+v)
+			stream.RunCommandSafe("go", "get", k+"@"+v)
 		})
 	}
 	w.Wait()
