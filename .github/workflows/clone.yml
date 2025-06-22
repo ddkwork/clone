@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master  # 或者你想要触发工作流的分支名
+    schedule:
+      - cron: '0 */1 * * *'  # 每1小时运行
   workflow_dispatch:
 
 jobs:
