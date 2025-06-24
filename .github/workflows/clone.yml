@@ -54,13 +54,6 @@ jobs:
           name: HyperDbg-tar-gz
           path: HyperDbg.tar.gz
 
-# 新增步骤：上传依赖文件
-      - name: 上传依赖文件
-        uses: actions/upload-artifact@v4
-        with:
-          name: dep-txt
-          path: dep.txt
-
       - name: 上传mod文件
         uses: actions/upload-artifact@v4
         with:
