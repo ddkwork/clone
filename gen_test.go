@@ -37,6 +37,12 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 		"github.com/ebitengine/purego": "main",
 		"github.com/saferwall/pe":      "main",
 	}
+
+	fack := `
+replace gioui.org => github.com/ddkwork/gio latest
+`
+	stream.NewBuffer("go.mod").Append(stream.NewBuffer(fack)).ReWriteSelf()
+
 	w := sync.WaitGroup{}
 	for k, v := range reps {
 		if strings.Contains(k, "gvcode") {
