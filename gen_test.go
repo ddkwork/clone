@@ -17,7 +17,7 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 	mylog.Check(os.Setenv("GOPROXY", "direct"))
 	reps := map[string]string{
 		//"gioui.org":                    "main",
-		"github.com/ddkwork/gio":       "main",
+		//"github.com/ddkwork/gio":       "main",
 		"gioui.org/cmd":                "main",
 		"gioui.org/example":            "main",
 		"gioui.org/x":                  "main",
