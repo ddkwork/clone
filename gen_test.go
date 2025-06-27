@@ -31,13 +31,9 @@ func TestName(t *testing.T) { // 模块代理刷新的不及时，需要禁用�
 		"golang.org/x/arch":            "master",
 		"modernc.org/ccgo":             "master",
 		"golang.org/x/tools/gopls":     "master",
-		//"github.com/ddkwork/app":       "master",
-		//"github.com/ddkwork/toolbox":   "master",
-		//"github.com/ddkwork/unison":    "master",
 		"github.com/ebitengine/purego": "main",
 		"github.com/saferwall/pe":      "main",
 	}
-
 	fack := `
 replace gioui.org => github.com/ddkwork/gio latest
 `
@@ -45,9 +41,6 @@ replace gioui.org => github.com/ddkwork/gio latest
 
 	w := sync.WaitGroup{}
 	for k, v := range reps {
-		if strings.Contains(k, "gvcode") {
-			v = "v0.2.1-0.20250424030509-8138ffc92f73"
-		}
 		w.Go(func() {
 			stream.RunCommandSafe("go", "get", k+"@"+v)
 		})
@@ -55,9 +48,6 @@ replace gioui.org => github.com/ddkwork/gio latest
 	w.Wait()
 	g := stream.NewGeneratedFile()
 	for s := range stream.ReadFileToLines("go.mod") {
-		if strings.Contains(s, "gvcode") {
-			s = `github.com/oligo/gvcode v0.2.1-0.20250424030509-8138ffc92f73`
-		}
 		g.P(s)
 	}
 	stream.WriteTruncate("go.mod", g.Bytes())
