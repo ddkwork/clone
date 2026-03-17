@@ -21,11 +21,13 @@ jobs:
 
       - name: 克隆HyperDbg仓库
         run: git clone --recursive -b dev https://github.com/HyperDbg/HyperDbg.git
+      - name: 安装zstd
+        run: brew install zstd
       - name: 打包HyperDbg项目
-        run: tar -czvf HyperDbg.tar.gz HyperDbg
+        run: tar --zstd -cvf HyperDbg.tar.zst HyperDbg
 
       - name: 上传打包文件
         uses: actions/upload-artifact@v6
         with:
-          name: HyperDbg-tar-gz
-          path: HyperDbg.tar.gz
+          name: HyperDbg-tar-zst
+          path: HyperDbg.tar.zst
