@@ -38,11 +38,12 @@ jobs:
       run: |
         git clone --recursive -b dev https://github.com/HyperDbg/HyperDbg.git HyperDbg
 
-    - name: Apply compilation fixes
+    - name: Apply compilation fix patch
       working-directory: .
       run: |
         cd HyperDbg
-        powershell -ExecutionPolicy Bypass -File "../apply_fixes.ps1"
+        git apply --check -p1 ../driver_compilation_fix.patch
+        git apply -p1 ../driver_compilation_fix.patch
 
     - name: Setup WDK version 22H2
       run: |
