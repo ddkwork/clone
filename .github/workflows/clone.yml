@@ -26,8 +26,15 @@ jobs:
       - name: 打包HyperDbg项目
         run: tar --zstd -cvf HyperDbg.tar.zst HyperDbg
 
-      - name: 上传打包文件
-        uses: actions/upload-artifact@v6
+      - name: 发布到GitHub Releases
+        uses: softprops/action-gh-release@v2
         with:
-          name: HyperDbg-tar-zst
-          path: HyperDbg.tar.zst
+          name: HyperDbg-dev-branch
+          tag_name: latest
+          files: HyperDbg.tar.zst
+          body: |
+            HyperDbg dev 分支克隆包
+            更新时间: ${{ github.event.head_commit.timestamp }}
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
