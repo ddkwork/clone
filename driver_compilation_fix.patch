@@ -1,6 +1,6 @@
-From a467a7d5a2e860d5d3b74b8f2f1b07c5d8b06c88 Mon Sep 17 00:00:00 2001
-From: User <user@example.com>
-Date: Tue, 17 Mar 2026 20:46:09 -0700
+From ac14e7ae2f46591f7f7903207166b0827a663049 Mon Sep 17 00:00:00 2001
+From: ddkwork <ddkwork@example.com>
+Date: Tue, 17 Mar 2026 21:43:36 -0700
 Subject: [PATCH] Fix driver compilation: remove DLL dependencies and resolve
  symbol conflicts
 

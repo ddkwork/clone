@@ -42,8 +42,8 @@ jobs:
       working-directory: .
       run: |
         cd HyperDbg
-        git apply --check -p0 ../driver_compilation_fix.patch
-        git apply -p0 ../driver_compilation_fix.patch
+        git apply --check -p1 ../driver_compilation_fix.patch
+        git apply -p1 ../driver_compilation_fix.patch
 
     - name: Setup WDK version 22H2
       run: |
