@@ -17,6 +17,7 @@ env:
   WDK_URL: https://go.microsoft.com/fwlink/?linkid=2196230
   BUILD_DIR: ./build
   CONFIG: Release
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build-and-release:
