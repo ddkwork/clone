@@ -6,19 +6,40 @@ $SCRIPT_DIR = Split-Path -Parent $MyInvocation.MyCommand.Path
 $BUILD_DIR = Join-Path $SCRIPT_DIR "build"
 $CONFIG = "Release"
 $WDK_PATH = "E:\Program Files\Windows Kits\10"
-$EWDK_BUILD_ENV = "E:\BuildEnv\SetupBuildEnv.cmd"
+$EWDK_ISO_PATH = "D:\Admin\vs2022VC\EWDK_br_release_28000_251103-1709.iso"
+$EWDK_MOUNT_LETTER = "E:"
+$EWDK_BUILD_ENV = "$EWDK_MOUNT_LETTER\BuildEnv\SetupBuildEnv.cmd"
 
 Write-Host "=== HyperDbg 统一工程构建脚本 ===" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "脚本目录: $SCRIPT_DIR" -ForegroundColor Green
 Write-Host ""
 
-# 设置WDK环境变量
-$env:WDKContentRoot = $WDK_PATH
-Write-Host "设置WDKContentRoot: $env:WDKContentRoot" -ForegroundColor Green
-Write-Host ""
+# 检查ISO文件是否存在
+if (-not (Test-Path $EWDK_ISO_PATH)) {
+    Write-Host "错误: 未找到EWDK ISO文件: $EWDK_ISO_PATH" -ForegroundColor Red
+    Read-Host "按任意键退出"
+    exit 1
+}
 
-# 检查EWDK构建环境脚本是否存在
+# 检查是否已挂载
+$mounted = $false
+try {
+    $volume = Get-Volume -DriveLetter $EWDK_MOUNT_LETTER.Replace(":", "") -ErrorAction SilentlyContinue
+    if ($volume -and $volume.DriveType -eq "CD-ROM") {
+        Write-Host "EWDK ISO 已挂载到 $EWDK_MOUNT_LETTER" -ForegroundColor Green
+        $mounted = $true
+    }
+} catch {}
+
+if (-not $mounted) {
+    Write-Host "正在挂载 EWDK ISO..." -ForegroundColor Yellow
+    $diskImage = Mount-DiskImage -ImagePath $EWDK_ISO_PATH -PassThru
+    $driveLetter = ($diskImage | Get-Volume).DriveLetter
+    Write-Host "EWDK ISO 已挂载到 ${driveLetter}:" -ForegroundColor Green
+}
+
+# 检查构建环境脚本是否存在
 if (-not (Test-Path $EWDK_BUILD_ENV)) {
     Write-Host "错误: 未找到EWDK构建环境脚本: $EWDK_BUILD_ENV" -ForegroundColor Red
     Read-Host "按任意键退出"
@@ -26,6 +47,11 @@ if (-not (Test-Path $EWDK_BUILD_ENV)) {
 }
 
 Write-Host "使用EWDK构建环境: $EWDK_BUILD_ENV" -ForegroundColor Green
+Write-Host ""
+
+# 设置WDK环境变量
+$env:WDKContentRoot = $WDK_PATH
+Write-Host "设置WDKContentRoot: $env:WDKContentRoot" -ForegroundColor Green
 Write-Host ""
 
 # 清理并创建构建目录
