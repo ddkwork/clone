@@ -1,4 +1,4 @@
-name: Build HyperDbg Unified Driver
+name: HyperDbg Source Snapshot
 
 on:
   push:
@@ -13,9 +13,6 @@ on:
   schedule:
     - cron: '0 */6 * * *'
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
@@ -24,7 +21,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Clone HyperDbg repository
       run: |
@@ -38,20 +35,20 @@ jobs:
         echo "date=$(git log -1 --format=%cd --date=short)" >> $GITHUB_OUTPUT
 
     - name: Create Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: latest
-        name: HyperDbg Unified Driver - Latest
+        name: HyperDbg Source Snapshot - Latest
         files: |
           HyperDbg.tar.zst
         body: |
-          HyperDbg Unified Driver - Latest Build
+          HyperDbg dev branch source code snapshot
           
-          Build Date: ${{ steps.hyperdbg_info.outputs.date }}
+          Snapshot Date: ${{ steps.hyperdbg_info.outputs.date }}
           HyperDbg Commit: ${{ steps.hyperdbg_info.outputs.commit }}
           Unified Repo Commit: ${{ github.sha }}
           
-          This release is automatically updated with each successful build.
+          Automatically updated with each successful run.
         draft: false
         prerelease: true
       env:
