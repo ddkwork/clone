@@ -35,7 +35,7 @@ jobs:
         echo "date=$(git log -1 --format=%cd --date=short)" >> $GITHUB_OUTPUT
 
     - name: Create archive
-      run: tar -cvzf HyperDbg.tar.gz HyperDbg
+      run: tar -cvf - HyperDbg | zstd -o HyperDbg.tar.zst
 
     - name: Create Release
       uses: softprops/action-gh-release@v2
@@ -43,7 +43,7 @@ jobs:
         tag_name: latest
         name: HyperDbg Source Snapshot - Latest
         files: |
-          HyperDbg.tar.gz
+          HyperDbg.tar.zst
         body: |
           HyperDbg dev branch source code snapshot
           
