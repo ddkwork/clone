@@ -18,7 +18,6 @@ Write-Host ""
 # 检查ISO文件是否存在
 if (-not (Test-Path $EWDK_ISO_PATH)) {
     Write-Host "错误: 未找到EWDK ISO文件: $EWDK_ISO_PATH" -ForegroundColor Red
-    Read-Host "按任意键退出"
     exit 1
 }
 
@@ -42,7 +41,6 @@ if (-not $mounted) {
 # 检查构建环境脚本是否存在
 if (-not (Test-Path $EWDK_BUILD_ENV)) {
     Write-Host "错误: 未找到EWDK构建环境脚本: $EWDK_BUILD_ENV" -ForegroundColor Red
-    Read-Host "按任意键退出"
     exit 1
 }
 
@@ -73,21 +71,19 @@ try {
 } catch {
     Write-Host "=== 生成项目失败 ===" -ForegroundColor Red
     Pop-Location
-    Read-Host "按任意键退出"
     exit 1
 }
 
 Write-Host ""
 Write-Host "=== 编译项目 ===" -ForegroundColor Cyan
 try {
-    cmd /c "`"$EWDK_BUILD_ENV`" && cmake --build . --config $CONFIG"
+    cmd /c "`"$EWDK_BUILD_ENV`" && cmake --build . --config $CONFIG 2>&1"
     if ($LASTEXITCODE -ne 0) {
         throw "编译失败"
     }
 } catch {
     Write-Host "=== 编译失败 ===" -ForegroundColor Red
     Pop-Location
-    Read-Host "按任意键退出"
     exit 1
 }
 
@@ -113,5 +109,17 @@ if ($pdbFiles) {
     $pdbFiles | ForEach-Object { Write-Host "  $($_.Name)" }
 }
 
+# ============================================
+# 签名驱动
+# ============================================
 Write-Host ""
-Read-Host "按任意键退出"
+Write-Host "=== 签名驱动 ===" -ForegroundColor Cyan
+
+foreach ($sysFile in $sysFiles) {
+    signtool sign /fd SHA256 /s My /n "HyperDbgTest" /t http://timestamp.digicert.com $sysFile.FullName
+    Write-Host "已签名: $($sysFile.Name)" -ForegroundColor Green
+}
+
+Write-Host ""
+Write-Host "=== 全部完成 ===" -ForegroundColor Green
+Write-Host ""

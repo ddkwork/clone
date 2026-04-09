@@ -34,8 +34,6 @@ file(GLOB ZycoreSourceFiles "HyperDbg/hyperdbg/dependencies/zydis/dependencies/z
 set(ZydisSourceFiles ${ZydisSourceFiles} ${ZycoreSourceFiles})
 
 file(GLOB_RECURSE HyperkdSourceFiles "HyperDbg/hyperdbg/hyperkd/code/*.c")
-list(FILTER HyperkdSourceFiles EXCLUDE REGEX ".*code/common/Common\\.c$")
-list(FILTER HyperkdSourceFiles EXCLUDE REGEX ".*code/debugger/broadcast/DpcRoutines\\.c$")
 file(GLOB HyperkdAsmFiles "HyperDbg/hyperdbg/hyperkd/code/assembly/*.asm")
 
 file(GLOB_RECURSE HyperhvSourceFiles "HyperDbg/hyperdbg/hyperhv/code/*.c")
@@ -67,7 +65,7 @@ target_include_directories(HyperhvLib PRIVATE
     "HyperDbg/hyperdbg/include/components/optimizations/code"
     "HyperDbg/hyperdbg/include/components/spinlock/code"
 )
-target_compile_definitions(HyperhvLib PRIVATE DHYPERDBG_VMM)
+target_compile_definitions(HyperhvLib PRIVATE DHYPERDBG_VMM HYPERDBG_HYPEREVADE HYPERDBG_HYPER_LOG HYPERDBG_HYPERTRACE)
 target_compile_options(HyperhvLib PRIVATE /Od /Zi /RTC1)
 target_precompile_headers(HyperhvLib PRIVATE "HyperDbg/hyperdbg/hyperhv/pch.h")
 
@@ -77,7 +75,7 @@ target_include_directories(HyperlogLib PRIVATE
     "HyperDbg/hyperdbg/hyperlog/header"
     "HyperDbg/hyperdbg/hyperlog/code"
 )
-target_compile_definitions(HyperlogLib PRIVATE DHYPERDBG_HYPERLOG IMPORT_EXPORT_HYPERLOG=)
+target_compile_definitions(HyperlogLib PRIVATE DHYPERDBG_HYPERLOG HYPERDBG_HYPER_LOG HYPERDBG_HYPERTRACE HYPERDBG_HYPEREVADE HYPERDBG_VMM)
 target_compile_options(HyperlogLib PRIVATE /Od /Zi /RTC1)
 target_precompile_headers(HyperlogLib PRIVATE "HyperDbg/hyperdbg/hyperlog/header/pch.h")
 
@@ -93,7 +91,7 @@ target_include_directories(HyperevadeLib PRIVATE
     "HyperDbg/hyperdbg/hyperevade/header"
     "HyperDbg/hyperdbg/hyperevade/code"
 )
-target_compile_definitions(HyperevadeLib PRIVATE DHYPERDBG_HYPEREVADE IMPORT_EXPORT_HYPEREVADE=)
+target_compile_definitions(HyperevadeLib PRIVATE DHYPERDBG_HYPEREVADE HYPERDBG_HYPEREVADE HYPERDBG_HYPER_LOG HYPERDBG_HYPERTRACE HYPERDBG_VMM)
 target_compile_options(HyperevadeLib PRIVATE /Od /Zi /RTC1)
 target_precompile_headers(HyperevadeLib PRIVATE "HyperDbg/hyperdbg/hyperevade/header/pch.h")
 
@@ -103,7 +101,7 @@ target_include_directories(HypertraceLib PRIVATE
     "HyperDbg/hyperdbg/hypertrace/header"
     "HyperDbg/hyperdbg/hypertrace/code"
 )
-target_compile_definitions(HypertraceLib PRIVATE DHYPERDBG_HYPERTRACE IMPORT_EXPORT_HYPERTRACE=)
+target_compile_definitions(HypertraceLib PRIVATE DHYPERDBG_HYPERTRACE HYPERDBG_HYPERTRACE HYPERDBG_HYPER_LOG HYPERDBG_HYPEREVADE HYPERDBG_VMM)
 target_compile_options(HypertraceLib PRIVATE /Od /Zi /RTC1)
 target_precompile_headers(HypertraceLib PRIVATE "HyperDbg/hyperdbg/hypertrace/header/pch.h")
 
@@ -130,11 +128,10 @@ target_include_directories(hyperkd PRIVATE
     "HyperDbg/hyperdbg/include/components/spinlock/code"
     "HyperDbg/hyperdbg/script-eval"
 )
-target_compile_definitions(hyperkd PRIVATE DHYPERDBG_DEBUGGER IMPORT_EXPORT_HYPERLOG= IMPORT_EXPORT_HYPERTRACE= IMPORT_EXPORT_HYPEREVADE=)
+target_compile_definitions(hyperkd PRIVATE DHYPERDBG_DEBUGGER HYPERDBG_HYPEREVADE HYPERDBG_HYPER_LOG HYPERDBG_HYPERTRACE HYPERDBG_VMM)
 target_precompile_headers(hyperkd PRIVATE "HyperDbg/hyperdbg/hyperkd/header/pch.h")
-
 target_compile_options(hyperkd PRIVATE /Od /Zi /RTC1)
-target_link_options(hyperkd PRIVATE /DEBUG)
+target_link_options(hyperkd PRIVATE /DEBUG /FORCE:MULTIPLE)
 
 target_link_libraries(hyperkd
     ZydisLib
