@@ -52,13 +52,11 @@ $env:WDKContentRoot = $WDK_PATH
 Write-Host "设置WDKContentRoot: $env:WDKContentRoot" -ForegroundColor Green
 Write-Host ""
 
-# 清理并创建构建目录
-if (Test-Path $BUILD_DIR) {
-    Write-Host "清理构建目录: $BUILD_DIR" -ForegroundColor Yellow
-    Remove-Item -Path $BUILD_DIR -Recurse -Force
+# 确保构建目录存在
+if (-not (Test-Path $BUILD_DIR)) {
+    Write-Host "创建构建目录: $BUILD_DIR" -ForegroundColor Yellow
+    New-Item -ItemType Directory -Path $BUILD_DIR | Out-Null
 }
-Write-Host "创建构建目录: $BUILD_DIR" -ForegroundColor Yellow
-New-Item -ItemType Directory -Path $BUILD_DIR | Out-Null
 
 # 生成项目
 Write-Host "=== 生成项目 ===" -ForegroundColor Cyan
@@ -77,7 +75,7 @@ try {
 Write-Host ""
 Write-Host "=== 编译项目 ===" -ForegroundColor Cyan
 try {
-    cmd /c "`"$EWDK_BUILD_ENV`" && cmake --build . --config $CONFIG 2>&1"
+    cmd /c "`"$EWDK_BUILD_ENV`" && cmake --build . --config $CONFIG 2>&1" | Tee-Object -FilePath "$BUILD_DIR\build_errors.log"
     if ($LASTEXITCODE -ne 0) {
         throw "编译失败"
     }
